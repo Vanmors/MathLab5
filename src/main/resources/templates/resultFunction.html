@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span th:if="${not #lists.isEmpty(resultFunc) }">
+    <p><strong>result:</strong> <span th:text="${resultFunc}"></span></p>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>x</th>
+            <th>y</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${resultTable}">
+            <td th:each="j : ${i}">
+                <span th:text="${j}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</span>
+<span th:unless="${not #lists.isEmpty(resultFunc)}">
+    Неверно введены данные или не указан метод решения!
+</span>
+</body>
+</html>

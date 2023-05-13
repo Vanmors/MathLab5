@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/resultTable}" th:object="${form}" th:method="GET">
+    <div>
+        Выбор метода решения:
+        <label>Многочлен Лагранжа</label>
+        <input type="radio" th:field="*{method}" value="1"/>
+        <label>Многочлен Ньютона</label>
+        <input type="radio" th:field="*{method}" value="2"/>
+    </div>
+    <p></p>
+
+    Введите значения x:
+    <div th:each="j: ${#numbers.sequence(1, 5)}">
+        <input type="number" th:field="*{inputData}" step="any"/>
+        <p/>
+    </div>
+    <p/>
+    Введите значения y:
+    <div th:each="j: ${#numbers.sequence(1, 5)}">
+        <input type="number" th:field="*{inputData}" step="any"/>
+        <p/>
+    </div>
+    <p/>
+    Введите х:
+    <input type="number" th:field="*{x}" step="any"/>
+
+        <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
