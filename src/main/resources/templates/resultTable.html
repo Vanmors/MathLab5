@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<span th:if="${not #lists.isEmpty(result) }">
+<span th:if="${not #lists.isEmpty(result) and not #lists.isEmpty(resultTable)}">
     <p><strong>result:</strong> <span th:text="${result}"></span></p>
 
     <table border="1">
@@ -23,8 +23,13 @@
         </tr>
         </tbody>
     </table>
+
+<p></p>
+    <div class="Chart">
+        <img src="/chart" width="1000" th:src="@{/chart}"/>
+    </div>
 </span>
-<span th:unless="${not #lists.isEmpty(result)}">
+<span th:unless="${not #lists.isEmpty(result) and not #lists.isEmpty(resultTable)}">
     Неверно введены данные или не указан метод решения!
 </span>
 </body>

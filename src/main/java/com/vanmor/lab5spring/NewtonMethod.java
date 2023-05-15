@@ -48,7 +48,7 @@ public class NewtonMethod {
             countOfIterations--;
         }
 
-        if (function.checkNanTable(result)) {
+        if (function.checkNanTable(result)  && function.checkDuplicates(points)) {
             return result;
         }
         else {

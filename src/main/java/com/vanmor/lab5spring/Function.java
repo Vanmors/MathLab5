@@ -43,7 +43,7 @@ public class Function {
         for (int i = 0; i < inputData.size(); i++) {
             result[1][i] = f(result[0][i], numberOfFunction);
         }
-        
+
         return result;
     }
 
@@ -51,6 +51,18 @@ public class Function {
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[0].length; j++) {
                 if (Double.isNaN(result[i][j]) || Double.isInfinite(result[i][j])) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+    public boolean checkDuplicates(double[][] points) {
+        for (int i = 0; i < points[0].length - 1; i++) {
+            for (int j = i + 1; j < points[0].length; j++) {
+                if (points[0][i] == points[0][j]) {
                     return false;
                 }
             }

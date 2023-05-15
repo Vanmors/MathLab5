@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<span th:if="${not #lists.isEmpty(resultFunc) }">
+<span th:if="${not #lists.isEmpty(resultFunc) and not #lists.isEmpty(resultTable)}">
     <p><strong>result:</strong> <span th:text="${resultFunc}"></span></p>
 
     <table border="1">
@@ -24,7 +24,7 @@
         </tbody>
     </table>
 </span>
-<span th:unless="${not #lists.isEmpty(resultFunc)}">
+<span th:unless="${not #lists.isEmpty(resultFunc) and not #lists.isEmpty(resultTable)}">
     Неверно введены данные или не указан метод решения!
 </span>
 </body>

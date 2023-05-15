@@ -1,7 +1,9 @@
 package com.vanmor.lab5spring;
 
 
+import com.vanmor.lab5spring.Charts.UploadChart;
 import org.apache.catalina.mbeans.SparseUserDatabaseMBean;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,17 +38,25 @@ public class IOData {
         LagrangeMethod lagrangeMethod = new LagrangeMethod();
         NewtonMethod newtonMethod = new NewtonMethod();
         newtonMethod.getCountValue(points, form.getX());
+        UploadChart.points = points;
+        double result = 0;
+        UploadChart.points = points;
+        UploadChart.x = form.getX();
+
         if (form.getMethod() == 1) {
-            model.addAttribute("result", lagrangeMethod.L(points, form.getX()));
+            result = lagrangeMethod.L(points, form.getX());
+            model.addAttribute("result", result);
             model.addAttribute("resultTable", lagrangeMethod.interpolation(points));
         }
         else if (form.getMethod() == 2){
-            model.addAttribute("result", newtonMethod.getCountValue(points, form.getX()));
+            result = newtonMethod.getCountValue(points, form.getX());
+            model.addAttribute("result", result);
             model.addAttribute("resultTable", newtonMethod.interpolation(points));
         }
         else {
             model.addAttribute("result", null);
         }
+        UploadChart.result = result;
 
         return "resultTable";
     }
@@ -56,21 +66,28 @@ public class IOData {
         Function function = new Function();
         LagrangeMethod lagrangeMethod = new LagrangeMethod();
         NewtonMethod newtonMethod = new NewtonMethod();
-
-
+        
         double[][] points = function.calculateFunc(form.getInputData(), form.getNumberOfFunction());
+        double result = 0;
+        UploadChart.points = points;
+        UploadChart.x = form.getX();
+        
+        
         if (form.getMethod() == 1) {
-            model.addAttribute("resultFunc", lagrangeMethod.L(points, form.getX()));
+            result = lagrangeMethod.L(points, form.getX());
+            model.addAttribute("resultFunc", result);
             model.addAttribute("resultTable", lagrangeMethod.interpolation(points));
         }
         else if (form.getMethod() == 2){
-            model.addAttribute("resultFunc", newtonMethod.getCountValue(points, form.getX()));
+            result = newtonMethod.getCountValue(points, form.getX());
+            model.addAttribute("resultFunc", result);
             model.addAttribute("resultTable", newtonMethod.interpolation(points));
         }
         else {
             model.addAttribute("resultFunc", null);
         }
-
+        UploadChart.result = result;
+        
         return "resultFunction";
     }
 
