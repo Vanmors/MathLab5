@@ -19,7 +19,8 @@ public class UploadChart {
 
     public static double[][] points;
     public static double x;
-    public static double result;
+    public static Double result;
+    public static int number;
 
     @GetMapping("/chart")
     public void handleChart(HttpServletResponse response, Form form, Model model) throws IOException {
@@ -28,7 +29,7 @@ public class UploadChart {
         OutputStream out = response.getOutputStream();
         Chart drawChart = new Chart();
 
-        writeChartAsJPEG(out, drawChart.drawChart(points, x, result), 600, 600);
+        writeChartAsJPEG(out, drawChart.drawChart(points, x, result, number), 600, 600);
 
     }
 

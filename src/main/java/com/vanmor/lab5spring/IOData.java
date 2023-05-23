@@ -2,8 +2,6 @@ package com.vanmor.lab5spring;
 
 
 import com.vanmor.lab5spring.Charts.UploadChart;
-import org.apache.catalina.mbeans.SparseUserDatabaseMBean;
-import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +36,11 @@ public class IOData {
         LagrangeMethod lagrangeMethod = new LagrangeMethod();
         NewtonMethod newtonMethod = new NewtonMethod();
         newtonMethod.getCountValue(points, form.getX());
-        UploadChart.points = points;
-        double result = 0;
+//        UploadChart.points = points;
+        Double result = 0.0;
         UploadChart.points = points;
         UploadChart.x = form.getX();
+        UploadChart.number = 0;
 
         if (form.getMethod() == 1) {
             result = lagrangeMethod.L(points, form.getX());
@@ -71,7 +70,7 @@ public class IOData {
         double result = 0;
         UploadChart.points = points;
         UploadChart.x = form.getX();
-        
+        UploadChart.number = form.getNumberOfFunction();
         
         if (form.getMethod() == 1) {
             result = lagrangeMethod.L(points, form.getX());

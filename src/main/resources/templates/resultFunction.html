@@ -23,6 +23,10 @@
         </tr>
         </tbody>
     </table>
+    <p></p>
+    <div class="Chart">
+        <img src="/chart" width="1000" th:src="@{/chart}"/>
+    </div>
 </span>
 <span th:unless="${not #lists.isEmpty(resultFunc) and not #lists.isEmpty(resultTable)}">
     Неверно введены данные или не указан метод решения!
